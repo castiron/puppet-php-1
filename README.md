@@ -10,24 +10,24 @@ change everything in ways which are typical for RHEL, but it also works on
 Debian based distributions (such as Ubuntu), and support for others should
 be easy to add.
 
-* `php::cli` : Simple class to install PHP's Command Line Interface
-* `php::fpm::daemon` : Simple class to install PHP's FastCGI Process Manager
-* `php::fpm::conf` : PHP FPM pool configuration definition
-* `php::ini` : Definition to create php.ini files
-* `php::mod_php5` : Simple class to install PHP's Apache httpd module
-* `php::module` : Definition to manage separately packaged PHP modules
-* `php::module::ini` : Definition to manage the ini files of separate modules
+* `php_legacy::cli` : Simple class to install PHP's Command Line Interface
+* `php_legacy::fpm::daemon` : Simple class to install PHP's FastCGI Process Manager
+* `php_legacy::fpm::conf` : PHP FPM pool configuration definition
+* `php_legacy::ini` : Definition to create php.ini files
+* `php_legacy::mod_php5` : Simple class to install PHP's Apache httpd module
+* `php_legacy::module` : Definition to manage separately packaged PHP modules
+* `php_legacy::module::ini` : Definition to manage the ini files of separate modules
 
 ## Examples
 
 Create `php.ini` files for different uses, but based on the same template :
 
 ```puppet
-php::ini { '/etc/php.ini':
+php_legacy::ini { '/etc/php.ini':
   display_errors => 'On',
   memory_limit   => '256M',
 }
-php::ini { '/etc/httpd/conf/php.ini':
+php_legacy::ini { '/etc/httpd/conf/php.ini':
   mail_add_x_header => 'Off',
   # For the parent directory
   require           => Package['httpd'],
@@ -38,49 +38,49 @@ Install the latest version of the PHP command line interface in your OS's
 package manager (e.g. Yum for RHEL):
 
 ```puppet
-include '::php::cli'
+include '::php_legacy::cli'
 ```
 
 Install version 5.3.3 of the PHP command line interface :
 
 ```puppet
-class { 'php::cli': ensure => '5.3.3' }
+class { 'php_legacy::cli': ensure => '5.3.3' }
 ```
 
 Install the PHP Apache httpd module, using its own php configuration file
 (you will need mod_env in apache for this to work) :
 
 ```puppet
-class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
+class { 'php_legacy::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
 ```
 
 Install PHP modules which don't have any configuration :
 
 ```puppet
-php::module { [ 'ldap', 'mcrypt' ]: }
+php_legacy::module { [ 'ldap', 'mcrypt' ]: }
 ```
 
-Configure PHP modules, which must be installed with php::module first :
+Configure PHP modules, which must be installed with php_legacy::module first :
 
 ```puppet
-php::module { [ 'pecl-apc', 'xml' ]: }
-php::module::ini { 'pecl-apc':
+php_legacy::module { [ 'pecl-apc', 'xml' ]: }
+php_legacy::module::ini { 'pecl-apc':
   settings => {
     'apc.enabled'      => '1',
     'apc.shm_segments' => '1',
     'apc.shm_size'     => '64',
   }
 }
-php::module::ini { 'xmlreader': pkgname => 'xml' }
-php::module::ini { 'xmlwriter': ensure => 'absent' }
+php_legacy::module::ini { 'xmlreader': pkgname => 'xml' }
+php_legacy::module::ini { 'xmlwriter': ensure => 'absent' }
 ```
 
 Install PHP FastCGI Process Manager with a single pool to be used with nginx.
 Note that we reuse the 'www' name to overwrite the example configuration :
 
 ```puppet
-include '::php::fpm::daemon'
-php::fpm::conf { 'www':
+include '::php_legacy::fpm::daemon'
+php_legacy::fpm::conf { 'www':
   listen  => '127.0.0.1:9001',
   user    => 'nginx',
   # For the user to exist

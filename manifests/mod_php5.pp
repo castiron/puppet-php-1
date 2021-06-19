@@ -1,20 +1,20 @@
-# Class: php::mod_php5
+# Class: php_legacy::mod_php5
 #
 # Apache httpd PHP module. Requires the 'httpd' service and package to be
 # declared somewhere, usually from the apache_httpd module.
 #
 # Sample Usage :
-#  php::ini { '/etc/php-httpd.ini': }
-#  class { 'php::mod_php5': inifile => '/etc/php-httpd.ini' }
+#  php_legacy::ini { '/etc/php-httpd.ini': }
+#  class { 'php_legacy::mod_php5': inifile => '/etc/php-httpd.ini' }
 #
-class php::mod_php5 (
+class php_legacy::mod_php5 (
   $ensure             = 'installed',
   $inifile            = '/etc/php.ini',
-  $php_package_name   = $::php::params::php_package_name,
-  $httpd_package_name = $::php::params::httpd_package_name,
-  $httpd_service_name = $::php::params::httpd_service_name,
-  $httpd_conf_dir     = $::php::params::httpd_conf_dir,
-) inherits ::php::params {
+  $php_package_name   = $::php_legacy::params::php_package_name,
+  $httpd_package_name = $::php_legacy::params::httpd_package_name,
+  $httpd_service_name = $::php_legacy::params::httpd_service_name,
+  $httpd_conf_dir     = $::php_legacy::params::httpd_conf_dir,
+) inherits ::php_legacy::params {
 
   package { $php_package_name:
     ensure  => $ensure,

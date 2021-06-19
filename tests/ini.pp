@@ -1,1 +1,1 @@
-php::ini { '/etc/php.ini': }
+php_legacy::ini { '/etc/php.ini': }

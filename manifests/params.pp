@@ -1,6 +1,6 @@
 # Parameters class.
 #
-class php::params {
+class php_legacy::params {
   case $::osfamily {
     'Debian': {
       if $::ubuntu_release == '18.04' {

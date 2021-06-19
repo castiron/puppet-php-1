@@ -1,1 +1,1 @@
-php::module { [ 'ldap', 'mcrypt', 'xml' ]: }
+php_legacy::module { [ 'ldap', 'mcrypt', 'xml' ]: }

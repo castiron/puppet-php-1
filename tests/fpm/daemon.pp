@@ -1,1 +1,1 @@
-include php::fpm::daemon
+include php_legacy::fpm::daemon

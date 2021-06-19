@@ -1,21 +1,21 @@
-# Define: php::fpm::conf
+# Define: php_legacy::fpm::conf
 #
 # PHP FPM pool configuration definition. Note that the original php-fpm package
 # includes a pre-configured one called 'www' so you should either use that name
 # in order to override it, or "ensure => absent" it.
 #
 # Sample Usage:
-#  php::fpm::conf { 'www': ensure => absent }
-#  php::fpm::conf { 'customer1':
+#  php_legacy::fpm::conf { 'www': ensure => absent }
+#  php_legacy::fpm::conf { 'customer1':
 #      listen => '127.0.0.1:9001',
 #      user   => 'customer1',
 #  }
-#  php::fpm::conf { 'customer2':
+#  php_legacy::fpm::conf { 'customer2':
 #      listen => '127.0.0.1:9002',
 #      user   => 'customer2',
 #  }
 #
-define php::fpm::conf (
+define php_legacy::fpm::conf (
   $ensure                    = 'present',
   $package_name              = undef,
   $service_name              = undef,
@@ -58,7 +58,7 @@ define php::fpm::conf (
   $error_log                 = true,
 ) {
 
-  include '::php::params'
+  include '::php_legacy::params'
 
   $pool = $title
 
@@ -67,15 +67,15 @@ define php::fpm::conf (
 
   # This is much easier from classes which inherit params...
   $fpm_package_name = $package_name ? {
-    undef   => $::php::params::fpm_package_name,
+    undef   => $::php_legacy::params::fpm_package_name,
     default => $package_name,
   }
   $fpm_service_name = $service_name ? {
-    undef   => $::php::params::fpm_service_name,
+    undef   => $::php_legacy::params::fpm_service_name,
     default => $service_name,
   }
 
-  file { "${php::params::fpm_pool_dir}/${pool}.conf":
+  file { "${php_legacy::params::fpm_pool_dir}/${pool}.conf":
     ensure  => $ensure,
     content => template('php/fpm/pool.conf.erb'),
     owner   => 'root',

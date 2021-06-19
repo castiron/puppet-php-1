@@ -9,7 +9,7 @@
 * Include facts reporting php_version, php_majversion and php_minversion.
 
 #### 2015-04-01 - 1.1.1
-* Fix php-fpm notification for php::module::ini when prefix was set.
+* Fix php-fpm notification for php_legacy::module::ini when prefix was set.
 
 #### 2015-03-09 - 1.1.0
 * Rebase php-fpm.conf and pool.conf with files from 5.5.22.
@@ -70,7 +70,7 @@
 
 #### 2013-08-30 - 0.3.3
 * Use @varname syntax in fpm templates too.
-* Fix php::module::ini when ensure is absent.
+* Fix php_legacy::module::ini when ensure is absent.
 * Fix directory create for FPM (Erik Webb).
 * Fix conf.d directory location for Debian (Erik Webb).
 

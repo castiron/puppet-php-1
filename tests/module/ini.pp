@@ -1,9 +1,9 @@
-php::module { [ 'pecl-apc', 'xml' ]: }
-php::module::ini { 'pecl-apc':
+php_legacy::module { [ 'pecl-apc', 'xml' ]: }
+php_legacy::module::ini { 'pecl-apc':
     settings => {
         'apc.enabled'      => '1',
         'apc.shm_segments' => '1',
         'apc.shm_size'     => '64',
     }
 }
-php::module::ini { 'xmlreader': pkgname => 'xml' }
+php_legacy::module::ini { 'xmlreader': pkgname => 'xml' }

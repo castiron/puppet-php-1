@@ -1,17 +1,17 @@
-# Define: php::ini
+# Define: php_legacy::ini
 #
 # Definition to create a php.ini file. Typically used once per node where php
 # will be used, to configure the content of the main /etc/php.ini file.
 #
 # Sample Usage:
-#  Php::Ini {
+#  php_legacy::Ini {
 #      expose_php => 'Off',
 #  }
-#  php::ini { '/etc/php.ini':
+#  php_legacy::ini { '/etc/php.ini':
 #      display_errors => 'On',
 #  }
 #
-define php::ini (
+define php_legacy::ini (
   $ensure                     = undef,
   $template                   = 'php/php.ini-el6.erb',
   # php.ini options in the order they appear in the original file
@@ -114,7 +114,7 @@ define php::ini (
   $soap_wsdl_cache_ttl        = '86400',
 ) {
 
-  include '::php::common'
+  include '::php_legacy::common'
 
   file { $title:
     ensure  => $ensure,
@@ -122,8 +122,8 @@ define php::ini (
   }
 
   # Reload FPM if present
-  if defined(Class['::php::fpm::daemon']) and $::php::fpm::daemon::ensure == 'present' {
-    File[$title] ~> Service[$php::params::fpm_service_name]
+  if defined(Class['::php_legacy::fpm::daemon']) and $::php_legacy::fpm::daemon::ensure == 'present' {
+    File[$title] ~> Service[$php_legacy::params::fpm_service_name]
   }
 
 }

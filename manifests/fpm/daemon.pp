@@ -1,19 +1,19 @@
-# Class: php::fpm::daemon
+# Class: php_legacy::fpm::daemon
 #
-# Install the PHP FPM daemon. See php::fpm::conf for configuring its pools.
+# Install the PHP FPM daemon. See php_legacy::fpm::conf for configuring its pools.
 #
 # Sample Usage:
-#  include php::fpm::daemon
+#  include php_legacy::fpm::daemon
 #
-class php::fpm::daemon (
+class php_legacy::fpm::daemon (
   $ensure                      = 'present',
-  $package_name                = $::php::params::fpm_package_name,
-  $service_name                = $::php::params::fpm_service_name,
-  $service_restart             = $::php::params::fpm_service_restart,
-  $fpm_pool_dir                = $::php::params::fpm_pool_dir,
-  $fpm_conf_dir                = $::php::params::fpm_conf_dir,
-  $error_log                   = $::php::params::fpm_error_log,
-  $pid                         = $::php::params::fpm_pid,
+  $package_name                = $::php_legacy::params::fpm_package_name,
+  $service_name                = $::php_legacy::params::fpm_service_name,
+  $service_restart             = $::php_legacy::params::fpm_service_restart,
+  $fpm_pool_dir                = $::php_legacy::params::fpm_pool_dir,
+  $fpm_conf_dir                = $::php_legacy::params::fpm_conf_dir,
+  $error_log                   = $::php_legacy::params::fpm_error_log,
+  $pid                         = $::php_legacy::params::fpm_pid,
   $syslog_facility             = 'daemon',
   $syslog_ident                = 'php-fpm',
   $log_level                   = 'notice',
@@ -27,7 +27,7 @@ class php::fpm::daemon (
   $log_owner                   = undef,
   $log_group                   = undef,
   $log_dir_mode                = '0770',
-) inherits ::php::params {
+) inherits ::php_legacy::params {
 
   # Hack-ish to default to user for group too
   $log_group_final = $log_group ? {
