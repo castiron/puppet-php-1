@@ -54,7 +54,7 @@ define php_legacy::module::ini (
     file { $inifile:
       ensure  => $ensure,
       require => Package[$ospkgname],
-      content => template('php/module.ini.erb'),
+      content => template('php_legacy/module.ini.erb'),
     }
   }
 

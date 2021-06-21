@@ -60,7 +60,7 @@ class php_legacy::fpm::daemon (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => template('php/fpm/php-fpm.conf.erb'),
+      content => template('php_legacy/fpm/php-fpm.conf.erb'),
       require => Package[$package_name],
       notify  => Service[$service_name],
     }

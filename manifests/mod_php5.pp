@@ -24,7 +24,7 @@ class php_legacy::mod_php5 (
 
   # Custom httpd conf snippet
   file { "${httpd_conf_dir}/php.conf":
-    content => template('php/httpd/php.conf.erb'),
+    content => template('php_legacy/httpd/php.conf.erb'),
     require => Package[$httpd_package_name],
     notify  => Service[$httpd_service_name],
   }

@@ -13,7 +13,7 @@
 #
 define php_legacy::ini (
   $ensure                     = undef,
-  $template                   = 'php/php.ini-el6.erb',
+  $template                   = 'php_legacy/php.ini-el6.erb',
   # php.ini options in the order they appear in the original file
   $user_ini_filename          = '.user.ini',
   $user_ini_cache_ttl         = '300',

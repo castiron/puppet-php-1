@@ -77,7 +77,7 @@ define php_legacy::fpm::conf (
 
   file { "${php_legacy::params::fpm_pool_dir}/${pool}.conf":
     ensure  => $ensure,
-    content => template('php/fpm/pool.conf.erb'),
+    content => template('php_legacy/fpm/pool.conf.erb'),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
